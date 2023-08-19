@@ -5,22 +5,13 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import { CreatePasswordComponent } from './create-password/create-password.component';
 import {FormsModule} from '@angular/forms';
-
-
-
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent,
-    ForgetpasswordComponent,
-    CreatePasswordComponent,
- 
-   
+    RegisterComponent
    ],
   imports: [
     CommonModule,
@@ -29,6 +20,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ]
 })
+
 export class AuthModule { }
 
 
