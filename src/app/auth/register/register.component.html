@@ -1,1 +1,186 @@
-<p>register works!</p>
+
+  <div class="container h-10">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11 pt-4 pb-4">
+        <div class="card text-black" style="border-radius: 25px">
+          <div class="card-body p-0">
+            <div class="row justify-content-center ms-0 me-0">
+              <div class="col-md-10 col-lg-6 col-xl-6 order-2 order-lg-1 p-md-5 p-3">
+                <h2 class="text-center h2 mb-4 mt-0">
+                  Sign up
+                </h2>
+
+   <form [formGroup]="registerForm" (ngSubmit)="onSubmitClicked(); registerFn()">
+                 
+                  <div class="d-flex flex-row align-items-center mb-4">      
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="text"
+                        required="off"
+                        id="form1Example1c"
+                        class="form-control"
+                        autocomplete="off"
+                        for="name"
+                        placeholder="Enter your name"
+                        
+                        formControlName="name"  [ngClass]="{ 'error': getControl('name')?.invalid && getControl('name')?.touched }"/>
+                        <i class="fa fa-user user-icon" aria-hidden="true"></i>
+                        <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
+                          <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']">First Name field is requird</small>
+                          <small class="text-danger" *ngIf="getControl('name')?.errors?.['pattern']">Please enter a valid name.</small>
+                          <small class="text-danger" *ngIf="getControl('name')?.errors?.['maxlength']">Only valid characters are allowed.</small>
+                          <small class="text-danger" *ngIf="getControl('name')?.errors?.['minlength']">user name minimum length is 4 </small>
+                  
+                        </div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                   
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="Email"
+                        for="Email"
+                        required="off"
+                        id="form2Example3c"
+                        class="form-control"
+                        autocomplete="off"
+                        placeholder="Enter your Email "
+                        formControlName="email" 
+                        [ngClass]="{error : getControl('email')?.errors && getControl('email')?.touched}" />
+                        <i class="fa fa-envelope user-icon" aria-hidden="true"></i>
+                        <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+  
+                          <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">Email field is requird</small>
+                  
+                          <small class="text-danger" *ngIf="getControl('email')?.errors?.['maxlength']">Email should be maximum 20 characters long.</small>
+                  
+                          <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">Please enter a valid email.</small>
+                  
+                        </div>
+
+
+
+
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                   
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="text"
+                        required="off"
+                        id="form3Example4c"
+                        class="form-control"
+                        placeholder="Phone"
+                        formControlName="Phone" 
+                        autocomplete="off"
+                        [ngClass]="{error : getControl('Phone')?.errors && getControl('Phone')?.touched}" />
+                        <i class="fa fa-phone user-icon" aria-hidden="true"></i>
+                        <div *ngIf="getControl('Phone')?.errors && getControl('Phone')?.touched">
+  
+                          <small class="text-danger" *ngIf="getControl('Phone')?.errors?.['required']">Mobile field is requird</small>
+                        
+                          <small class="text-danger" *ngIf="getControl('Phone')?.errors?.['minlength'] || getControl('Phone')?.errors?.['maxlength'] || getControl('Phone')?.errors?.['pattern']">Please enter a valid mobile no.</small>
+                  
+                        </div>
+                      
+
+             
+
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-0">
+                 
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="password"
+                        required="off"
+                        id="form4Example4cd"
+                        class="form-control"
+                        placeholder="Password"
+                        formControlName="password"
+                        autocomplete="off"
+                        [ngClass]="{error : getControl('password')?.errors && getControl('password')?.touched}"  />
+                        <i class="fa-solid fa-lock user-icon"></i>
+                        <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+  
+                          <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']">Password field is requird</small>
+                  
+                          <small class="text-danger" *ngIf="getControl('password')?.errors?.['minlength'] || getControl('password')?.errors?.['maxlength']">Password should be minimum 6 and maximum 10 characters long.</small>
+                  
+                        </div>
+
+                      <label class="form-label"  for="form3Example4cd"></label>
+
+                    </div>
+                  </div>
+
+ 
+                  <div class="d-flex flex-row align-items-center mb-1">
+                  
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="password"
+                        required="off"
+                        id="form5Example4c"
+                        class="form-control"
+                        placeholder="Conform password"
+                        autocomplete="off"
+                        formControlName="confirmpassword"
+
+                        [ngClass]="{error : getControl('confirmpassword')?.errors && getControl('confirmpassword')?.touched}"  />
+                        <i class="fa-solid fa-lock user-icon"></i>
+                        <div *ngIf="getControl('confirmpassword')?.errors && getControl('confirmpassword')?.touched">
+  
+                          <small class="text-danger" *ngIf="getControl('confirmpassword')?.errors?.['required']">Confirm Password field is requird</small>
+                  
+                          <small class="text-danger" *ngIf="getControl('confirmpassword')?.errors?.['minlength'] || getControl('confirmpassword')?.errors?.['maxlength']">Confirm Password should be minimum 6 and maximum 10 characters long.</small>
+
+                         
+                  
+                        </div> 
+                        <label class="form-label"  for="form3Example4cd"
+                        ></label
+                      >
+                    </div>
+                  </div> 
+                  <br>
+                 
+                        
+                        
+            
+               
+                 
+                   <div class="row">
+                    <p>Already have an account? <a routerLink="/auth/login" class="link">Login</a></p>
+                  </div> 
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-0">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div
+                class="col-md-10 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2 p-3"
+              >
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid"
+                  alt="Sample image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- </form> -->
+
+

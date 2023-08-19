@@ -1,0 +1,119 @@
+ .box1 {
+     max-width: 800px; 
+     height: 70vh;
+     margin: 0 auto; 
+     overflow: hidden; 
+    }
+ .img-fluid{
+   max-width: 400px;
+ }
+   .card {
+     max-width: 100%; 
+   }
+
+ .img-container img {
+   max-width: 100%; 
+   height: auto; 
+ }
+ 
+ @media (max-width: 768px) {
+   .img-container img {
+     max-width: 80%; 
+   }
+ }
+.user-icon{
+  display: flex;
+  position: relative;
+  bottom:  24px;
+  right: 18px;
+  font-size: 12px;
+}
+ 
+  .box1 .container {
+    padding-top: 10vh;
+   }
+
+  .container.h-10 {
+    max-width: 950px; 
+    // max-height: 200px;
+    margin: 0 auto; 
+   
+    border-radius: 15px; 
+    box-shadow: 500px;
+    background-color: blue($color: #8d8383);
+  }
+  .container.h-10 .img-fluid {
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+  }
+
+  @media (max-width: 768px) {
+    .container.h-10 {
+      
+      padding: 0 15px;  
+    }
+  }
+  .form-control {
+    height: 40px; /* Adjust this value as per your requirement */
+  }
+
+  /* Optionally, reduce the height of the parent elements if needed */
+  .d-flex.mb-4 {
+    height: auto; /* Adjust this value as per your requirement */
+  }
+
+  .card{
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+
+      .order-lg-2{
+        background: #008080;
+      }
+
+    h2{
+      color: #008080;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"]{
+      width: 100%;
+    border: 0px solid transparent;
+    border-radius: 0;
+    border-bottom: 1px solid #aaa;
+    padding: 1em 0.5em 0.5em;
+    padding-left: 2em;
+    outline: none;
+    margin: 0;
+    transition: all 0.5s ease;
+    padding: 10px 10px 10px 0;
+    }
+
+    button{
+      transition: all 0.5s ease;
+      border-radius: 30px;
+      color: #008080;
+      font-weight: 600;
+      background-color: #fff;
+      border: 1px solid #008080;
+      width: 100%;
+    }
+
+    .terms-checkbox{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-flow: row;
+      column-gap: 10px;
+
+      a{
+        color: #008080;
+      }
+
+    }
+
+    .form-check .form-check-input{
+      margin-left: 0 !important;
+    }
+  }
+
+ 
