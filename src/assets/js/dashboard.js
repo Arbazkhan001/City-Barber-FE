@@ -1,10 +1,8 @@
-$(function () {
+(function () {
 
 
-  // =====================================
-  // Profit
-  // =====================================
-  var chart = {
+
+  var ChartOptions = {
     series: [
       { name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390] },
       { name: "Expense this month:", data: [280, 250, 325, 215, 250, 310, 280, 250] },
@@ -101,14 +99,11 @@ $(function () {
 
   };
 
-  var chart = new ApexCharts(document.querySelector("#chart"), chart);
-  chart.render();
+  var Chart= new ApexCharts(document.querySelector("#chart"), ChartOptions);
+  Chart.render();
 
 
-  // =====================================
-  // Breakup
-  // =====================================
-  var breakup = {
+  var breakupChartOptions = {
     color: "#adb5bd",
     series: [38, 40, 25],
     labels: ["2022", "2021", "2020"],
@@ -156,15 +151,15 @@ $(function () {
     },
   };
 
-  var chart = new ApexCharts(document.querySelector("#breakup"), breakup);
-  chart.render();
+  var breakupChart = new ApexCharts(document.querySelector("#breakup"), breakupChartOptions);
+  breakupChart.render();
 
 
 
   // =====================================
   // Earning
   // =====================================
-  var earning = {
+  var earningChartOptions= {
     chart: {
       id: "sparkline3",
       type: "area",
@@ -207,5 +202,6 @@ $(function () {
       },
     },
   };
-  new ApexCharts(document.querySelector("#earning"), earning).render();
+ var earningChart= new ApexCharts(document.querySelector("#earning"),earningChartOptions)
+ earningChart.render();
 })

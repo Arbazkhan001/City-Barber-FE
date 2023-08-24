@@ -9,12 +9,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './common/home/header/header.component';
+import { FooterComponent } from './common/home/footer/footer.component';
+import { FormComponent } from './constant/form/form.component';
+import { RegisterComponent } from './saloon/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   
+    HomeComponent,
+    HeaderComponent,
+     FooterComponent,
+    HomeComponent,
+    FormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,18 +44,4 @@ export class AppModule {}
 
 
 
-// import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { AuthModule } from './auth/auth.module'; 
-// import { AppComponent } from './app.component';
-// import { AppHeaderComponent } from './common/header/header.component';
-// import { AppFooterComponent } from './common/footer/footer.component';
-// import { AppRoutingModule } from './app-routing.module';
-// import { ReactiveFormsModule } from '@angular/forms';
 
-// @NgModule({
-//   declarations: [AppComponent, AppHeaderComponent, AppFooterComponent],
-//   imports: [BrowserModule, ReactiveFormsModule, AuthModule, AppRoutingModule],
-//   bootstrap: [AppComponent],
-// })
-// export class AppModule {}

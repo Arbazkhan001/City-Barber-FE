@@ -35,7 +35,6 @@
               "src/assets/css/styles.min.css"
             ],
             "scripts": [
-              "src/assets/libs/jquery/dist/jquery.min.js",
               "src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/assets/js/sidebarmenu.js",
               "src/assets/js/app.min.js",
