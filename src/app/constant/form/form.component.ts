@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import { AbstractControl, FormGroup,FormControl, Validators } from '@angular/forms';
-
+import { AbstractControl, FormBuilder,FormGroup,FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-form',
@@ -8,30 +8,37 @@ import { AbstractControl, FormGroup,FormControl, Validators } from '@angular/for
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent  implements OnInit{
- 
+
   getControl(name: string): AbstractControl | null {
     return this.registerForm.get(name);
 }
 
-validateImageType(control: FormControl): { [key: string]: any } | null {
-  const file = control.value;
+
+ 
+validateImageType(control: AbstractControl): ValidationErrors | null {
+  const file: File = control.value;
+
   if (file) {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    if (!allowedTypes.includes(file.type)) {
+    const allowedExtensions = ['jpeg', 'png', 'jpg'];
+    const fileExtension = (file.name || '').split('.').pop()?.toLowerCase() || '';
+
+    if (allowedExtensions.includes(fileExtension)) {
       return { invalidFileType: true };
     }
   }
+
   return null;
 }
 
+constructor(private formservices:FormService,private  formBuilder:FormBuilder){}
 registerForm= new FormGroup({
   name:new FormControl( '', [
     Validators.required,
-    Validators.pattern(/^[A-Za-z]+$/),
+    Validators.pattern(/^[A-Za-z_ ]+$/), 
   ]),
   ownerName:new FormControl('',[
  Validators.required,
- Validators.pattern(/^[A-Za-z]+$/),
+ Validators.pattern(/^[A-Za-z ]+$/),
   ]),
   email:new FormControl('',[
     Validators.required,
@@ -39,64 +46,57 @@ registerForm= new FormGroup({
   ]),
   Phone:new FormControl('',[
     Validators.required,
-    Validators.pattern(/^[789][0-9]{9}$/),
+    Validators.pattern(/^[6789][0-9]{9}$/),
   ]),
   state:new FormControl('',[
     Validators.required,
-    Validators.pattern(/^[A-Za-z]+$/),
+    
   ]),
   city:new FormControl('',[
 Validators.required,
-Validators.pattern(/^[A-Za-z]+$/),
+
   ]),
   Address:new FormControl('',[
  Validators.required,
- Validators.pattern(/^[A-Za-z]+$/),
   ]),
   Pincode:new FormControl('',[
   Validators.required,
-  // Validators.pattern(/^[0-9]{6}$/),
+  Validators.maxLength(6),
+   Validators.pattern(/^[0-9]{6}$/),
   ]),
   RegistrationNo:new FormControl('',[
   Validators.required,
-  Validators.pattern(/^[0-9]{9}$/),
+  
   ]),
-  gstn:new FormControl('',[
-Validators.required,
-Validators.pattern(/^[0-9]{15}$/),
-  ]),
-  photo: new FormControl('', [
+  gstn: new FormControl('', [
     Validators.required,
-    this.validateImageType 
-  ])
+    
+  ]),
+   photo: new FormControl('', [
+     Validators.required,
+     this.validateImageType,
+   ]),
 })
 
 ngOnInit(): void {
-    
+
 }
-registerFn(){
-  if (this.registerForm.valid) {
-      
-    console.log(this.registerForm.value);
-      this.registerForm.reset(); 
-  
-  } else {
-    console.log('Form is invalid. Please check the form fields.');
-  }
+ 
+registerFn() {
+  if (this.registerForm.valid) { 
+    console.log('Form is valid. Submitting...', this.registerForm.value);
+    this.formdata(this.registerForm.value)
+    this.registerForm.reset();
+
+}else {
+  console.log('Form is invalid. Please check the form fields.');
+}
 }
 
-
-
-  onSubmitClicked() {
-    if (this.registerForm.invalid) {
+onSubmitClicked() {
+  this.markAllFieldsAsTouched(this.registerForm);   
+ }
   
-      this.markAllFieldsAsTouched(this.registerForm);
-      return;
-    }
-
-    
-  }
-
   markAllFieldsAsTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       if (control instanceof FormControl) {
@@ -106,8 +106,16 @@ registerFn(){
       }
     });
   }
-
-  
+  formdata(data: any): void {
+    this.formservices.formdata(data).subscribe(
+      (response) => {
+        console.log("response", response);
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
+  }
 
 }
 

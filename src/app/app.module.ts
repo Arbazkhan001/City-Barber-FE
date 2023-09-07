@@ -15,6 +15,7 @@ import { FooterComponent } from './common/home/footer/footer.component';
 import { FormComponent } from './constant/form/form.component';
 import { RegisterComponent } from './saloon/register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { RegisterComponent } from './saloon/register/register.component';
      FooterComponent,
     HomeComponent,
     FormComponent,
-    RegisterComponent
+    RegisterComponent,
+  
+   
   ],
   imports: [
     BrowserModule,

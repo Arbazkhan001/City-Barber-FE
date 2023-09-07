@@ -8,11 +8,11 @@
           <div class="col-md-8 col-lg-6 col-xxl-3">
             <div class="card mb-0">
               <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                <a routerLink="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
             <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                 </a>
                 <p class="text-center">Your Social Campaigns</p>
-                <form [formGroup]="registerForm" >
+                <form [formGroup]="register" >
                   <div class="mb-3">
                     <label for="exampleInputtext1"autocomplete="off" required class="form-label">Name</label>
                     <input type="text" class="form-control" id="exampleInputtext1" autocomplete="off" required aria-describedby="textHelp" formControlName="name" [ngClass]="{ 'is-invalid': getControl('name')?.invalid && getControl('name')?.touched }" >
@@ -24,16 +24,14 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"autocomplete="off" required aria-describedby="emailHelp" formControlName="email" [ngClass]="{'is-invalid': getControl('email')?.invalid && getControl('email')?.touched }">
-                    <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
-                   <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">
+                    <input type="email" class="form-control" id="exampleInputEmail1"autocomplete="off" required aria-describedby="emailHelp" formControlName="Email" [ngClass]="{'is-invalid': getControl('Email')?.invalid && getControl('Email')?.touched }">
+                    <div *ngIf="getControl('Email')?.errors && getControl('Email')?.touched">
+                   <small class="text-danger" *ngIf="getControl('Email')?.errors?.['required']">
                     Email  is    required </small>
-                  <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">
+                  <small class="text-danger" *ngIf="getControl('Email')?.errors?.['pattern']">
                     Please Enter Valid Email
                   </small>
-                  <small class="text-danger" *ngIf="getControl('email')?.errors?.['']">
-                    Please Enter Valid Email
-                  </small>
+                  
                  
                     </div>
                   </div>
@@ -51,11 +49,12 @@
                 </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1 " autocomplete="off" required="off" formControlName="Password" [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
+                    <input [type]="changetype? 'password':'text'" class="form-control"  id="exampleInputPassword1 " autocomplete="off" required="off" formControlName="Password" [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
+                <!-- <i [ngClass]= "visible?'fa-solid fa-eye':'fa fa-eye-slash'"(click)="viewpass()" class="eye-icon"></i> -->
                     <div *ngIf="getControl('Password')?.errors && getControl('Password')?.touched">
                  <small class="text-danger" *ngIf="getControl('Password')?.errors?.['required']"> Password  is  required</small>
                  <small class="text-danger" *ngIf="getControl('Password')?.errors?.['minlength'] || getControl('Password')?.errors?.['maxlength']">Password should be minimum 6 and maximum 10 </small>
-                 <div *ngIf="getControl('Password')?.errors?.['passwordsNotMatch']">
+               <div *ngIf="getControl('Password')?.errors?.['passwordsNotMatch']">
                   <small class="text-danger">Passwords do not match</small>
                 </div>
                     </div>
@@ -65,17 +64,17 @@
                     <input type="password" class="form-control" id="exampleInputPassword2" autocomplete="off"  formControlName="ConfrimPassword" [ngClass]="{'is-invalid': getControl('ConfrimPassword')?.invalid && getControl('ConfrimPassword')?.touched }">
                     <div *ngIf="getControl('ConfrimPassword')?.errors && getControl('ConfrimPassword')?.touched">
                       <small class="text-danger" *ngIf="getControl('ConfrimPassword')?.errors?.['required']">Confirm Password is required</small>
-                      <div  *ngIf="registerForm.get('ConfrimPassword')?.hasError('passwordMismatch')" class="error-message text-danger">
+                      <div  *ngIf="register.get('ConfrimPassword')?.hasError('passwordMismatch')" class="error-message text-danger">
                         Passwords do not match.
                       </div>
                     </div>
                   </div>
                   
-                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" (click)="onSubmitClicked();registerFn()">Register</button>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" (click)="onSubmitClicked()">Register</button>
 
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
-                    <a class="text-primary fw-bold ms-2"  routerLink="/auth/login">Sign In</a>
+                    <a class="text-primary fw-bold ms-2"  routerLink="/auth/login">Log In</a>
                   </div>
                 </form>
               </div>

@@ -4,24 +4,31 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterService } from 'src/app/services/register.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+ data :any ;
+visible:boolean=true
+changetype:boolean=true
+viewpass(){
+  this.visible=!this.visible
+  this.changetype=!this.changetype
+}
+
+
   integreRegex = /^\d+$/;
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   Phoneregex = /^[789][0-9]{9}$/;
   PasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/;
   CpasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/;
-
-  registerForm = this.fb.group({
+  ngOnInit(): void {}
+  register= this.fb.group({
     name: new FormControl('', [
       Validators.required,
       Validators.maxLength(12),
@@ -55,42 +62,31 @@ export class RegisterComponent implements OnInit {
       Validators.pattern(this.CpasswordRegex),
     ]),
   });
-  submitted!: boolean;
+ 
   getControl(name: string): AbstractControl | null {
-    return this.registerForm.get(name);
+    return this.register.get(name);
   }
-  constructor(private http: HttpClient, private fb: FormBuilder, private renderer: Renderer2 ) {}
-  ngOnInit(): void {}
-  registerFn() {
-    if (this.registerForm.valid) {
-      
-      console.log(this.registerForm.value);
-        this.registerForm.reset(); 
-    
-    } else {
-      console.log('Form is invalid. Please check the form fields.');
+  constructor(private fb: FormBuilder,private registerService:RegisterService, private renderer: Renderer2 ) {}
+ 
+ onSubmitClicked() {
+     this.markFormControlsAsTouched(this.register);
+  
+    if (this.register.valid) {
+      const password = this.register.get('Password')?.value;
+      const confirmPassword = this.register.get('ConfrimPassword')?.value;
+  
+       if (password === confirmPassword) {
+        console.log('form is valid',this.register.value) 
+        this.registerData(this.register.value)
+        this.register.reset()
+        } else {
+         this.register.get('ConfrimPassword')?.setErrors({ passwordMismatch: true });
+         console.log('Passwords do not match. Please check your password and confirm password fields.');
+           } 
+      }else {
+        console.error('Form is invalid. Please check the form fields.');
+     }
     }
-  }
-  onSubmitClicked() {
-    this.markFormControlsAsTouched(this.registerForm);
-  
-    if (this.registerForm.valid) {
-      const password = this.registerForm.get('Password')?.value;
-      const confirmPassword = this.registerForm.get('ConfrimPassword')?.value;
-  
-      if (password === confirmPassword) {
-        console.log(this.registerForm.value);
-        this.registerForm.reset();
-        console.log('Passwords match. Submitting the form.');
-      } else {
-       
-        this.registerForm.get('ConfrimPassword')?.setErrors({ passwordMismatch: true });
-        console.log('Passwords do not match. Please check your password and confirm password fields.');
-      }
-    }
-  }
-  
-
   markFormControlsAsTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((key) => {
       const control = formGroup.controls[key];
@@ -101,5 +97,17 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
+
+  registerData(data: any): void {
+    this.registerService. registerData(data).subscribe(
+      (response) => {
+        console.log("response", response);
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
+  }
+  
 }
 
