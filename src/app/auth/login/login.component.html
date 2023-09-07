@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a routerLink="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                </a>
+                <p class="text-center">Your Social Campaigns</p>
+                <form [formGroup]="loginForm"  (ngSubmit)="onLogin(loginForm.value)">
+                  <div class="mb-3">
+                    <label for="exampleInputtext" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleInputtext1" autocomplete="off" required aria-describedby="textHelp" formControlName="email" [ngClass]="{ 'is-invalid': getControl('email')?.invalid && getControl(' email')?.touched }" >
+                    <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+                    <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']"> Email  is  required</small>
+                    <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">Please Enter Valid Email.</small>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+      
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control"  id="exampleInputPassword1 " autocomplete="off" required="off" formControlName="Password" [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
+                    <div *ngIf="getControl('Password')?.errors && getControl('Password')?.touched">
+                      <small class="text-danger" *ngIf="getControl('Password')?.errors?.['pattern']"> Please Enter Valid Password</small>
+                  <small class="text-danger" *ngIf="getControl('Password')?.errors?.['required']"> Password  is  required</small>
+                 <small class="text-danger" *ngIf="getControl('Password')?.errors?.['minlength'] || getControl('Password')?.errors?.['maxlength']">Password should be minimum 6 and maximum 10 </small>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
+                      <input class="form-check-input primary" autocomplete="off" type="checkbox" value="" id="flexCheckChecked" >
+                      <label class="form-check-label text-dark" for="flexCheckChecked">
+                        Remeber this Device
+                      </label>
+                    </div>
+                     <a class="text-primary fw-bold" routerLink="/auth/forgot-password">Forgot Password ?</a> 
+                  </div>
+                
+                 <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sing In</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
+                    <a class="text-primary fw-bold ms-2" routerLink="/auth/register">Create an account</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -26,13 +26,22 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/img"   
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/styles.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/js/sidebarmenu.js",
+              "src/assets/js/app.min.js",
+              "src/assets/libs/apexcharts/dist/apexcharts.min.js",
+              "src/assets/libs/simplebar/dist/simplebar.js",
+              "src/assets/js/dashboard.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,9 +100,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+              
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
             ],
             "scripts": []
           }

@@ -1,22 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { AuthModule } from './auth/auth.module'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './common/home/header/header.component';
+import { FooterComponent } from './common/home/footer/footer.component';
+import { FormComponent } from './constant/form/form.component';
+import { RegisterComponent } from './saloon/register/register.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
+    HomeComponent,
     HeaderComponent,
-    FooterComponent
+     FooterComponent,
+    HomeComponent,
+    FormComponent,
+    RegisterComponent,
+  
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatTooltipModule,
+    AuthModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
+
+
+
+
+
+
