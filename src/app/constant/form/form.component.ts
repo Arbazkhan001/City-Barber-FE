@@ -84,7 +84,7 @@ ngOnInit(): void {
  
 registerFn() {
   if (this.registerForm.valid) { 
-    console.log('Form is valid. Submitting...', this.registerForm.value);
+    console.log('Form is valid.', this.registerForm.value);
     this.formdata(this.registerForm.value)
     this.registerForm.reset();
 

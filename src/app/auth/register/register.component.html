@@ -9,9 +9,9 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a routerLink="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-            <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+            <img src="" width="180" alt="">
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
+                <p class="text-center">Register Here</p>
                 <form [formGroup]="register" >
                   <div class="mb-3">
                     <label for="exampleInputtext1"autocomplete="off" required class="form-label">Name</label>
@@ -23,17 +23,26 @@
                   </div>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"autocomplete="off" required aria-describedby="emailHelp" formControlName="Email" [ngClass]="{'is-invalid': getControl('Email')?.invalid && getControl('Email')?.touched }">
-                    <div *ngIf="getControl('Email')?.errors && getControl('Email')?.touched">
-                   <small class="text-danger" *ngIf="getControl('Email')?.errors?.['required']">
-                    Email  is    required </small>
-                  <small class="text-danger" *ngIf="getControl('Email')?.errors?.['pattern']">
-                    Please Enter Valid Email
-                  </small>
+                    <label for="exampleInputEmail1" class="form-label">email</label>
+                    <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    autocomplete="off"
+                    required
+                    aria-describedby="emailHelp"
+                    formControlName="email" 
+                    [ngClass]="{'is-invalid': getControl('email')?.invalid && getControl('email')?.touched }" 
+                  >
+                  <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+                    <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">
+                      Email is required
+                    </small>
+                    <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">
+                      Please Enter Valid Email
+                    </small>
+                  </div>
                   
-                 
-                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputphone" class="form-label">Phone</label>
@@ -70,7 +79,11 @@
                     </div>
                   </div>
                   
-                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" (click)="onSubmitClicked()">Register</button>
+                  <form [formGroup]="register" (ngSubmit)="onSubmitClicked()">
+                    <!-- Form controls go here -->
+                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Register</button>
+                  </form>
+                  
 
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
