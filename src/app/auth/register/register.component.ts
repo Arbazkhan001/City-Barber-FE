@@ -1,92 +1,79 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
- data :any ;
-visible:boolean=true
-changetype:boolean=true
-viewpass(){
-  this.visible=!this.visible
-  this.changetype=!this.changetype
-}
+  visible: boolean = true;
+  changetype: boolean = true;
 
+  constructor(
+    private fb: FormBuilder,
+    private registerService: RegisterService,
+    private router: Router
+  ) {}
 
-  integreRegex = /^\d+$/;
+  // Define your regular expressions here
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   Phoneregex = /^[789][0-9]{9}$/;
-  PasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/;
-  CpasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/;
-  ngOnInit(): void {}
-  register= this.fb.group({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(12),
-      Validators.pattern(/^[A-Za-z]+$/),
-      Validators.minLength(4),
-    ]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(20),
-      Validators.pattern(this.emailRegex),
-    ]),
-    Phone: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(10),
-      Validators.pattern(this.Phoneregex),
-    ]),
+  PasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
-    Password: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(6),
-      Validators.pattern(this.PasswordRegex),
-    ]),
-
-    ConfrimPassword: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(6),
-      Validators.pattern(this.CpasswordRegex),
-    ]),
+  register: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[A-Za-z\s]*$/)]],
+    email: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(20), Validators.pattern(this.emailRegex)]],
+    Phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.Phoneregex)]],
+    Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), Validators.pattern(this.PasswordRegex)]],
+    ConfrimPassword: ['', [Validators.required]],
   });
- 
-  getControl(name: string): AbstractControl | null {
+
+  ngOnInit(): void {}
+
+  getControl(name: string) {
     return this.register.get(name);
   }
-  constructor(private fb: FormBuilder,private registerService:RegisterService, private renderer: Renderer2 ) {}
- 
- onSubmitClicked() {
-     this.markFormControlsAsTouched(this.register);
-  
+
+  onSubmitClicked() {
+  //   console.log('Form validity:', this.register.valid);
+  // console.log('Name control validity:', this.register.get('name')?.valid);
+  // console.log('Email control validity:', this.register.get('email')?.valid);
     if (this.register.valid) {
       const password = this.register.get('Password')?.value;
       const confirmPassword = this.register.get('ConfrimPassword')?.value;
-  
-       if (password === confirmPassword) {
-        console.log('form is valid',this.register.value) 
-        this.registerData(this.register.value)
-        this.register.reset()
-        } else {
-         this.register.get('ConfrimPassword')?.setErrors({ passwordMismatch: true });
-         console.log('Passwords do not match. Please check your password and confirm password fields.');
-           } 
-      }else {
-        console.error('Form is invalid. Please check the form fields.');
-     }
+
+      if (password === confirmPassword) {
+        console.log('Form is valid', this.register.value);
+        this.registerData(this.register.value);
+        this.register.reset();
+        this.router.navigate(['/auth/login']);
+
+        
+      } 
+      
+      else {
+        this.register.get('ConfrimPassword')?.setErrors({ passwordMismatch: true });
+        console.error('Passwords do not match. Please check your password and confirm password fields.');
+      }
     }
+     else {
+      console.error('Form is invalid. Please check the form fields.');
+    }
+  }
+
+  registerData(data: any): void {
+    this.registerService.registerData(data).subscribe(
+      (response) => {
+        console.log('Response', response);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
   markFormControlsAsTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((key) => {
       const control = formGroup.controls[key];
@@ -94,20 +81,8 @@ viewpass(){
         this.markFormControlsAsTouched(control);
       } else {
         control.markAsTouched();
+        console.log(`Control: ${key}, Valid: ${control.valid}`);
       }
     });
-  }
-
-  registerData(data: any): void {
-    this.registerService. registerData(data).subscribe(
-      (response) => {
-        console.log("response", response);
-      },
-      (error) => {
-        console.error("Error:", error);
-      }
-    );
-  }
-  
+  } 
 }
-
