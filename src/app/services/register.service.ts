@@ -1,15 +1,15 @@
- import { Injectable } from '@angular/core';
-import{ HttpClient } from '@angular/common/http';
- import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
-   providedIn: 'root'
- })
- export class RegisterService {
+  providedIn: 'root'
+})
+export class RegisterService {
 
-  constructor(private http:HttpClient)  { }
+  constructor(private http: HttpClient) { }
 
-   registerData(data:any): Observable<any> {
-     return this.http.post('http://3.110.193.224/users/register',data );
-   }
+  registerData(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/users/register', data);
   }
+}
 // 3.110.193.224
