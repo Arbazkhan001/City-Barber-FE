@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private registerService: RegisterService,
     private router: Router
-  ) {}
+  ) { }
 
   // Define your regular expressions here
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -31,19 +31,19 @@ export class RegisterComponent implements OnInit {
     confirmpassword: ['', [Validators.required]],
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  getControl(name: string) {
-    return this.register.get(name);
+  getControl(username: string) {
+    return this.register.get(username);
   }
 
   onSubmitClicked() {
-  //   console.log('Form validity:', this.register.valid);
-  // console.log('Name control validity:', this.register.get('name')?.valid);
-  // console.log('Email control validity:', this.register.get('email')?.valid);
+    //   console.log('Form validity:', this.register.valid);
+    // console.log('Name control validity:', this.register.get('name')?.valid);
+    // console.log('Email control validity:', this.register.get('email')?.valid);
     if (this.register.valid) {
-      const password = this.register.get('Password')?.value;
-      const confirmPassword = this.register.get('ConfrimPassword')?.value;
+      const password = this.register.get('password')?.value;
+      const confirmPassword = this.register.get('confirmpassword')?.value;
 
       if (password === confirmPassword) {
         console.log('Form is valid', this.register.value);
@@ -51,15 +51,15 @@ export class RegisterComponent implements OnInit {
         this.register.reset();
         this.router.navigate(['/auth/login']);
 
-        
-      } 
-      
+
+      }
+
       else {
         this.register.get('confrimPassword')?.setErrors({ passwordMismatch: true });
         console.error('Passwords do not match. Please check your password and confirm password fields.');
       }
     }
-     else {
+    else {
       console.error('Form is invalid. Please check the form fields.');
     }
   }
@@ -84,5 +84,5 @@ export class RegisterComponent implements OnInit {
         console.log(`Control: ${key}, Valid: ${control.valid}`);
       }
     });
-  } 
+  }
 }
