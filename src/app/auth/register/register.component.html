@@ -15,15 +15,15 @@
                 <form [formGroup]="register" >
                   <div class="mb-3">
                     <label for="exampleInputtext1"autocomplete="off" required class="form-label">Name</label>
-                    <input type="text" class="form-control" id="exampleInputtext1" autocomplete="off" required aria-describedby="textHelp" formControlName="name" [ngClass]="{ 'is-invalid': getControl('name')?.invalid && getControl('name')?.touched }" >
+                    <input type="text" class="form-control" id="exampleInputtext1" autocomplete="off" required aria-describedby="textHelp" formControlName="username" [ngClass]="{ 'is-invalid': getControl('name')?.invalid && getControl('name')?.touched }" >
                     <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
-                    <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']"> Name  is  required</small>
+                    <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']"> username  is  required</small>
                     <small class="text-danger" *ngIf="getControl('name')?.errors?.['pattern']">Please Enter Valid Name.</small>
                   
                   </div>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">email</label>
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input
                     type="email"
                     class="form-control"
@@ -46,7 +46,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputphone" class="form-label">Phone</label>
-                    <input type="text"autocomplete="off" required class="form-control" id="exampleInputEmailphone" aria-describedby="emailHelp" formControlName="Phone"  [ngClass]="{'is-invalid': getControl('Phone')?.invalid && getControl('Phone')?.touched }">
+                    <input type="text"autocomplete="off" required class="form-control" id="exampleInputEmailphone" aria-describedby="emailHelp" formControlName="phone"  [ngClass]="{'is-invalid': getControl('Phone')?.invalid && getControl('Phone')?.touched }">
                     <div *ngIf="getControl('Phone')?.errors && getControl('Phone')?.touched">
            <small class="text-danger" *ngIf="getControl('Phone')?.errors?.['required']">
             Phone No is required
@@ -58,7 +58,7 @@
                 </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input [type]="changetype? 'password':'text'" class="form-control"  id="exampleInputPassword1 " autocomplete="off" required="off" formControlName="Password" [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
+                    <input [type]="changetype? 'password':'text'" class="form-control"  id="exampleInputPassword1 " autocomplete="off" required="off" formControlName="password" [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
                 <!-- <i [ngClass]= "visible?'fa-solid fa-eye':'fa fa-eye-slash'"(click)="viewpass()" class="eye-icon"></i> -->
                     <div *ngIf="getControl('Password')?.errors && getControl('Password')?.touched">
                  <small class="text-danger" *ngIf="getControl('Password')?.errors?.['required']"> Password  is  required</small>
@@ -70,7 +70,7 @@
                   </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword2" autocomplete="off"  formControlName="ConfrimPassword" [ngClass]="{'is-invalid': getControl('ConfrimPassword')?.invalid && getControl('ConfrimPassword')?.touched }">
+                    <input type="password" class="form-control" id="exampleInputPassword2" autocomplete="off"  formControlName="confirmpassword" [ngClass]="{'is-invalid': getControl('ConfrimPassword')?.invalid && getControl('ConfrimPassword')?.touched }">
                     <div *ngIf="getControl('ConfrimPassword')?.errors && getControl('ConfrimPassword')?.touched">
                       <small class="text-danger" *ngIf="getControl('ConfrimPassword')?.errors?.['required']">Confirm Password is required</small>
                       <div  *ngIf="register.get('ConfrimPassword')?.hasError('passwordMismatch')" class="error-message text-danger">

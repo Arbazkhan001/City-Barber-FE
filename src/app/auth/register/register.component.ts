@@ -20,15 +20,15 @@ export class RegisterComponent implements OnInit {
 
   // Define your regular expressions here
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  Phoneregex = /^[789][0-9]{9}$/;
-  PasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  phoneRegex = /^[789][0-9]{9}$/;
+  passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
   register: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[A-Za-z\s]*$/)]],
+    username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[A-Za-z\s]*$/)]],
     email: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(20), Validators.pattern(this.emailRegex)]],
-    Phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.Phoneregex)]],
-    Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), Validators.pattern(this.PasswordRegex)]],
-    ConfrimPassword: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.phoneRegex)]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), Validators.pattern(this.passwordRegex)]],
+    confirmpassword: ['', [Validators.required]],
   });
 
   ngOnInit(): void {}
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
       } 
       
       else {
-        this.register.get('ConfrimPassword')?.setErrors({ passwordMismatch: true });
+        this.register.get('confrimPassword')?.setErrors({ passwordMismatch: true });
         console.error('Passwords do not match. Please check your password and confirm password fields.');
       }
     }

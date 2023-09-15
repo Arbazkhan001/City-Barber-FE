@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder,FormGroup,FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -30,7 +31,7 @@ validateImageType(control: AbstractControl): ValidationErrors | null {
   return null;
 }
 
-constructor(private formservices:FormService,private  formBuilder:FormBuilder){}
+constructor(private formservices:FormService,private  formBuilder:FormBuilder,private router:Router){}
 registerForm= new FormGroup({
   name:new FormControl( '', [
     Validators.required,
@@ -87,6 +88,7 @@ registerFn() {
     console.log('Form is valid.', this.registerForm.value);
     this.formdata(this.registerForm.value)
     this.registerForm.reset();
+   
 
 }else {
   console.log('Form is invalid. Please check the form fields.');
@@ -109,16 +111,14 @@ onSubmitClicked() {
   formdata(data: any): void {
     this.formservices.formdata(data).subscribe(
       (response) => {
-        console.log("response", response);
+        console.log("Form submission successful.", response);
+        this.router.navigate(['dashboard/dashboardsaloon']);
+        console.log("Navigation executed.");
       },
       (error) => {
         console.error("Error:", error);
       }
     );
   }
-
+  
 }
-
-
-
-
