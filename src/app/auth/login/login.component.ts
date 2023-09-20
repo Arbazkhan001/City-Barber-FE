@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup; 
+  userLoginForm: FormGroup;
   PasswordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/;
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
- 
-  constructor(private http: HttpClient, private loginservices: LoginService, private formBuilder: FormBuilder,private router: Router) {
-    this.loginForm = this.formBuilder.group({
+
+  constructor(private http: HttpClient, private loginservices: LoginService, private formBuilder: FormBuilder, private router: Router) {
+    this.userLoginForm = this.formBuilder.group({
       email: ['', [
         Validators.required,
         Validators.minLength(4),
@@ -30,26 +31,60 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getControl(name: string): AbstractControl | null {
-    return this.loginForm.get(name);
+    return this.userLoginForm.get(name);
   }
 
+  // onLogin(data: object) {
+  //   if (this.userLoginForm.valid) {
+  //     this.userLoginForm.reset();
+  //     console.log("userLoginForm", this.userLoginForm)
+  //     this.loginservices.login(data).subscribe((result: any) => {
+  //       console.log("result", result);
+  //     });
+  //     this.router.navigate(['/dashboard']);
+  //   } else {
+  //     this.markFormControlsAsTouched(this.userLoginForm);
+  //     console.log("Form is invalid. Please check the form fields.");
+  //   }
+  // }
   onLogin(data: object) {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.loginForm.reset();
-      this.router.navigate(['/dashboard']);
-      this.loginservices.login(data).subscribe((result: any) => {
-        console.log(result);
-      });
+    //   console.log('Form validity:', this.register.valid);
+    // console.log('Name control validity:', this.register.get('name')?.valid);
+    // console.log('Email control validity:', this.register.get('email')?.valid);
+    if (this.userLoginForm.valid) {
+      const password = this.userLoginForm.get('password')?.value;
+      const email = this.userLoginForm.get('email')?.value;
 
-    } else {
-      this.markFormControlsAsTouched(this.loginForm);
-      console.log("Form is invalid. Please check the form fields.");
+      if (password === email) {
+        console.log('Form is valid', this.userLoginForm.value);
+        // this.registerData(this.userLoginForm.value);
+        this.userLoginForm.reset();
+        this.router.navigate(['/dashboard']);
+      }
+      else {
+        this.userLoginForm.get('confrimPassword')?.setErrors({ passwordMismatch: true });
+        console.error('Passwords do not match. Please check your password and confirm password fields.');
+      }
+    }
+    else {
+      console.error('Form is invalid. Please check the form fields.');
     }
   }
+
+  // onSubmit(data: object) {
+  //   if (this.userLoginForm.valid) {
+  //     this.loginservices.userLogin('users/login').subscribe(
+  //       (response) => {
+  //         console.info(response)
+  //       }
+  //     )
+
+  //   }
+
+  // }
 
   markFormControlsAsTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((key) => {

@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   phoneRegex = /^[789][0-9]{9}$/;
   passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
-  register: FormGroup = this.fb.group({
+  userRegister: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[A-Za-z\s]*$/)]],
     email: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(20), Validators.pattern(this.emailRegex)]],
     phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.phoneRegex)]],
@@ -34,28 +34,25 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   getControl(username: string) {
-    return this.register.get(username);
+    return this.userRegister.get(username);
   }
 
   onSubmitClicked() {
-    //   console.log('Form validity:', this.register.valid);
-    // console.log('Name control validity:', this.register.get('name')?.valid);
-    // console.log('Email control validity:', this.register.get('email')?.valid);
-    if (this.register.valid) {
-      const password = this.register.get('password')?.value;
-      const confirmPassword = this.register.get('confirmpassword')?.value;
+    if (this.userRegister.valid) {
+      const password = this.userRegister.get('password')?.value;
+      const confirmPassword = this.userRegister.get('confirmpassword')?.value;
 
       if (password === confirmPassword) {
-        console.log('Form is valid', this.register.value);
-        this.registerData(this.register.value);
-        this.register.reset();
+        console.log('Form is valid', this.userRegister.value);
+        this.registerData(this.userRegister.value);
+        this.userRegister.reset();
         this.router.navigate(['/auth/login']);
 
 
       }
 
       else {
-        this.register.get('confrimPassword')?.setErrors({ passwordMismatch: true });
+        this.userRegister.get('confrimPassword')?.setErrors({ passwordMismatch: true });
         console.error('Passwords do not match. Please check your password and confirm password fields.');
       }
     }

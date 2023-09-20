@@ -1,13 +1,12 @@
-
-body{
+body {
     background-color: #dee9ff;
 }
 
-.registration-form{
-	padding: 50px 0;
+.registration-form {
+    padding: 50px 0;
 }
 
-.registration-form form{
+.registration-form form {
     background-color: #fff;
     max-width: 600px;
     margin: auto;
@@ -17,8 +16,8 @@ body{
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.registration-form .form-icon{
-	text-align: center;
+.registration-form .form-icon {
+    text-align: center;
     background-color: #5891ff;
     border-radius: 50%;
     font-size: 40px;
@@ -30,13 +29,13 @@ body{
     line-height: 100px;
 }
 
-.registration-form .item{
-	border-radius: 20px;
+.registration-form .item {
+    border-radius: 20px;
     margin-bottom: 25px;
     padding: 10px 20px;
 }
 
-.registration-form .create-account{
+.registration-form .create-account {
     border-radius: 30px;
     padding: 10px 20px;
     font-size: 18px;
@@ -47,7 +46,7 @@ body{
     margin-top: 20px;
 }
 
-.registration-form .social-media{
+.registration-form .social-media {
     max-width: 600px;
     background-color: #fff;
     margin: auto;
@@ -60,12 +59,12 @@ body{
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.registration-form .social-icons{
+.registration-form .social-icons {
     margin-top: 30px;
     margin-bottom: 16px;
 }
 
-.registration-form .social-icons a{
+.registration-form .social-icons a {
     font-size: 23px;
     margin: 0 3px;
     color: #5691ff;
@@ -79,20 +78,272 @@ body{
     line-height: 45px;
 }
 
-.registration-form .social-icons a:hover{
+.registration-form .social-icons a:hover {
     text-decoration: none;
     opacity: 0.6;
 }
 
 @media (max-width: 576px) {
-    .registration-form form{
+    .registration-form form {
         padding: 50px 20px;
     }
 
-    .registration-form .form-icon{
+    .registration-form .form-icon {
         width: 70px;
         height: 70px;
         font-size: 30px;
         line-height: 70px;
+    }
+}
+
+:root {
+    --color-default: #0a0d13;
+    --color-primary: #0d42ff;
+    --color-secondary: #0e1d34;
+}
+
+#main-wrapper {
+    background: #0e1d34;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 48px;
+    top: 420px;
+    cursor: pointer;
+}
+
+
+input,
+textarea {
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+input {
+    height: 44px;
+}
+
+textarea {
+    padding: 10px 12px;
+}
+
+button {
+    background: #0d42ff;
+    border: 0;
+    padding: 10px 35px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+button[type=submit]:hover {
+    background: rgba(13, 66, 255, 0.8);
+}
+
+
+.section-header {
+    text-align: center;
+
+    position: relative;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #001973;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.section-header h2:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #001973;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.section-header span {
+    position: absolute;
+    top: 18px;
+    color: rgba(14, 29, 52, 0.06);
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 56px;
+    text-transform: uppercase;
+    line-height: 0;
+}
+
+.section-header p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.image-box {
+    width: 100%;
+    max-width: 400px;
+    display: table;
+    margin: 0 auto;
+}
+
+.image-box img {
+    float: left;
+    width: 100%;
+    display: block;
+    animation: up-down linear 6s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+    -webkit-animation: up-down linear 6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 50%;
+    -moz-animation: up-down linear 6s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 50%;
+    -o-animation: up-down linear 6s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 50%;
+    -ms-animation: up-down linear 6s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 50%;
+}
+
+.animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+    width: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+
+@keyframes up-down {
+    0% {
+        transform: translate(1px, 20px);
+    }
+
+    24% {
+        transform: translate(1px, 30px);
+    }
+
+    50% {
+        transform: translate(1px, 12px);
+    }
+
+    74% {
+        transform: translate(1px, 22px);
+    }
+
+    100% {
+        transform: translate(1px, 22px);
+    }
+}
+
+@-moz-keyframes up-down {
+    0% {
+        -moz-transform: translate(1px, 20px);
+    }
+
+    24% {
+        -moz-transform: translate(1px, 30px);
+    }
+
+    50% {
+        -moz-transform: translate(1px, 12px);
+    }
+
+    74% {
+        -moz-transform: translate(1px, 22px);
+    }
+
+    100% {
+        -moz-transform: translate(1px, 22px);
+    }
+}
+
+@-webkit-keyframes up-down {
+    0% {
+        -webkit-transform: translate(1px, 20px);
+    }
+
+    24% {
+        -webkit-transform: translate(1px, 30px);
+    }
+
+    50% {
+        -webkit-transform: translate(1px, 12px);
+    }
+
+    74% {
+        -webkit-transform: translate(1px, 22px);
+    }
+
+    100% {
+        -webkit-transform: translate(1px, 22px);
+    }
+}
+
+@-o-keyframes up-down {
+    0% {
+        -o-transform: translate(1px, 20px);
+    }
+
+    24% {
+        -o-transform: translate(1px, 30px);
+    }
+
+    50% {
+        -o-transform: translate(1px, 12px);
+    }
+
+    74% {
+        -o-transform: translate(1px, 22px);
+    }
+
+    100% {
+        -o-transform: translate(1px, 22px);
+    }
+}
+
+@-ms-keyframes up-down {
+    0% {
+        -ms-transform: translate(1px, 20px);
+    }
+
+    24% {
+        -ms-transform: translate(1px, 30px);
+    }
+
+    50% {
+        -ms-transform: translate(1px, 12px);
+    }
+
+    74% {
+        -ms-transform: translate(1px, 22px);
+    }
+
+    100% {
+        -ms-transform: translate(1px, 22px);
     }
 }

@@ -1,6 +1,7 @@
 .justify-content-between {
   justify-content: space-between !important;
 }
+
 .d-flex {
   display: flex !important;
 }
@@ -11,12 +12,15 @@
   padding: 30px 0;
   background-color: #031249;
 }
+
 .align-items-center {
   align-items: center !important;
 }
+
 .d-flex {
   display: flex !important;
 }
+
 .fixed-top {
   position: fixed;
   top: 0;
@@ -24,24 +28,30 @@
   left: 0;
   z-index: 1030;
 }
+
 *,
 ::after,
 ::before {
   box-sizing: border-box;
 }
+
 user agent stylesheet header {
   display: block;
 }
+
 body {
   font-family: var(--font-default);
   color: var(--color-default);
 }
+
 .align-items-center {
   align-items: center;
 }
+
 .d-flex {
   display: flex;
 }
+
 .fixed-top {
   position: fixed;
   top: 0;
@@ -49,11 +59,13 @@ body {
   left: 0;
   z-index: 1030;
 }
+
 *,
 ::after,
 ::before {
   box-sizing: border-box;
 }
+
 .header {
   transition: all 0.5s;
   z-index: 997;
@@ -61,10 +73,13 @@ body {
 }
 
 .header.sticked {
-  background: rgba(16, 53, 107, 0.9);
+  background: rgba(154, 177, 212, 0.9);
+  // background: rgba(16, 53, 107, 0.9);
   padding: 15px 0;
-  box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
+  box-shadow: 0px 2px 20px rgba(228, 230, 233, 0.1);
+  // box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
 }
+
 .header .logo img {
   max-height: 30px;
   margin-right: 6px;
@@ -118,12 +133,13 @@ body {
   .navbar a:hover,
   .navbar .active,
   .navbar .active:focus,
-  .navbar li:hover > a {
+  .navbar li:hover>a {
     color: #fff;
   }
 }
 
 @media (min-width: 1280px) {
+
   .mobile-nav-show,
   .mobile-nav-hide {
     display: none;
@@ -177,7 +193,7 @@ body {
   .navbar a:hover,
   .navbar .active,
   .navbar .active:focus,
-  .navbar li:hover > a {
+  .navbar li:hover>a {
     color: #fff;
   }
 
@@ -219,4 +235,24 @@ body {
     z-index: 9996;
   }
 
+}
+
+.cta-btn {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 40px;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #fff;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.cta-btn:hover {
+  background: #fff;
+  border: 2px solid var(--color-primary);
 }
