@@ -16,11 +16,11 @@
                      <div class="mb-3">
                       <label for="exampleInputtext1" class="form-label">Saloon Name</label>
                      <input type="text" autocomplete="off" class="form-control" id="saloonName"
-                   aria-describedby="textHelp" formControlName="saloonName" [ngClass]="{error:
-                        getControl('saloonName')?.invalid &&
-                        getControl('saloonName')?.touched }" />
-              <div *ngIf=" getControl('saloonName')?.errors && getControl('saloonName')?.touched">
-                                        <small class="text-danger" *ngIf="getControl('saloonName')?.errors?.['required']">
+                   aria-describedby="textHelp" formControlName="name" [ngClass]="{error:
+                        getControl('name')?.invalid &&
+                        getControl('name')?.touched }" />
+              <div *ngIf=" getControl('name')?.errors && getControl('name')?.touched">
+                                        <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']">
                                             Saloon Name Field is required</small>
                                         <small class="text-danger"
                                             *ngIf="getControl('name')?.errors?.['pattern']">Please Enter Valid saloon
@@ -43,7 +43,7 @@
                                                 Owner name is required</small>
                                             <small class="text-danger"
                                                 *ngIf="getControl('ownerName')?.errors?.['pattern']">Please Enter valid
-                                                ownner name.</small>
+                                                ownder name.</small>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -70,21 +70,21 @@
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Phone</label>
                                         <input type="number" autocomplete="off" class="form-control"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="phone"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="Phone"
                                             [ngClass]="{
                         error:
-                          getControl('phone')?.invalid &&
-                          getControl('phone')?.touched
+                          getControl('Phone')?.invalid &&
+                          getControl('Phone')?.touched
                       }" />
                                         <div *ngIf="
-                        getControl('phone')?.errors &&
-                        getControl('phone')?.touched
+                        getControl('Phone')?.errors &&
+                        getControl('Phone')?.touched
                       ">
                                             <small class="text-danger"
-                                                *ngIf="getControl('phone')?.errors?.['required']">
+                                                *ngIf="getControl('Phone')?.errors?.['required']">
                                                 Phone No is required
                                             </small>
-                                            <small class="text-danger" *ngIf="getControl('phone')?.errors?.['pattern']">
+                                            <small class="text-danger" *ngIf="getControl('Phone')?.errors?.['pattern']">
                                                 Please Enter Valid Phone No
                                             </small>
                                         </div>
@@ -134,17 +134,17 @@
                                         <div class="mb-4">
                                             <label for="exampleInputPassword1" class="form-label">Address</label>
                                             <input type="text" autocomplete="off" class="form-control"
-                                                id="exampleInputPassword1" formControlName="address" [ngClass]="{
+                                                id="exampleInputPassword1" formControlName="Address" [ngClass]="{
                           error:
-                            getControl('address')?.invalid &&
-                            getControl('address')?.touched
+                            getControl('Address')?.invalid &&
+                            getControl('Address')?.touched
                         }" />
                                             <div *ngIf="
-                          getControl('address')?.errors &&
-                          getControl('address')?.touched
+                          getControl('Address')?.errors &&
+                          getControl('Address')?.touched
                         ">
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('address')?.errors?.['required']">
+                                                    *ngIf="getControl('Address')?.errors?.['required']">
                                                     Address name is required
                                                 </small>
                                                 <small class="text-danger"
@@ -156,25 +156,25 @@
                                         <div class="mb-4">
                                             <label for="exampleInputPassword1" class="form-label">Pincode</label>
                                             <input type="number" autocomplete="off" class="form-control"
-                                                id="exampleInputPassword1" formControlName="pincode" [ngClass]="{
+                                                id="exampleInputPassword1" formControlName="Pincode" [ngClass]="{
                           error:
-                            getControl('pincode')?.invalid &&
-                            getControl('pincode')?.touched
+                            getControl('Pincode')?.invalid &&
+                            getControl('Pincode')?.touched
                         }" />
                                             <div *ngIf="
-                          getControl('pincode')?.errors &&
-                          getControl('pincode')?.touched
+                          getControl('Pincode')?.errors &&
+                          getControl('Pincode')?.touched
                         ">
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('pincode')?.errors?.['required']">
+                                                    *ngIf="getControl('Pincode')?.errors?.['required']">
                                                     Pincode is required
                                                 </small>
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('pincode')?.errors?.['pattern']">
+                                                    *ngIf="getControl('Pincode')?.errors?.['pattern']">
                                                     Please Enter Valid Pincode
                                                 </small>
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('pincode')?.errors?.['maxlength']">
+                                                    *ngIf="getControl('Pincode')?.errors?.['maxlength']">
                                                     Maximum length of 6
                                                 </small>
                                             </div>
@@ -183,22 +183,22 @@
                                             <label for="exampleInputPassword1" class="form-label">Registration
                                                 Number</label>
                                             <input type="text" autocomplete="off" class="form-control"
-                                                id="exampleInputPassword1" formControlName="registrationNumber" [ngClass]="{
+                                                id="exampleInputPassword1" formControlName="RegistrationNo" [ngClass]="{
                           error:
-                            getControl('registrationNumber')?.invalid &&
-                            getControl('registrationNumber')?.touched
+                            getControl('RegistrationNo')?.invalid &&
+                            getControl('RegistrationNo')?.touched
                         }" />
 
                                             <div *ngIf="
-                          getControl('registrationNumber')?.errors &&
-                          getControl('registrationNumber')?.touched
+                          getControl('RegistrationNo')?.errors &&
+                          getControl('RegistrationNo')?.touched
                         ">
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('registrationNumber')?.errors?.['required']">
+                                                    *ngIf="getControl('RegistrationNo')?.errors?.['required']">
                                                     Registration no is required
                                                 </small>
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('registrationNumber')?.errors?.['pattern']">
+                                                    *ngIf="getControl('RegistrationNo')?.errors?.['pattern']">
                                                     Please enter valid regestration no
                                                 </small>
                                             </div>
@@ -206,42 +206,42 @@
                                         <div class="mb-4">
                                             <label for="exampleInputPassword1" class="form-label">GSTN Number</label>
                                             <input type="text" autocomplete="off" class="form-control"
-                                                id="exampleInputPassword1" formControlName="GSTNumber" [ngClass]="{
+                                                id="exampleInputPassword1" formControlName="gstn" [ngClass]="{
                           error:
-                            getControl('GSTNumber')?.invalid &&
-                            getControl('GSTNumber')?.touched
+                            getControl('gstn')?.invalid &&
+                            getControl('gstn')?.touched
                         }" />
                                             <div *ngIf="
-                          getControl('GSTNumber')?.errors &&
-                          getControl('GSTNumber')?.touched
+                          getControl('gstn')?.errors &&
+                          getControl('gstn')?.touched
                         ">
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('GSTNumber')?.errors?.['required']">
+                                                    *ngIf="getControl('gstn')?.errors?.['required']">
                                                     Gstn Number is required
                                                 </small>
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('GSTNumber')?.errors?.['pattern']">
+                                                    *ngIf="getControl('gstn')?.errors?.['pattern']">
                                                     Please enter valid gstn no
                                                 </small>
                                             </div>
                                         </div>
                                         <div class="mb-4">
                                             <label for="myFile" class="form-label">Photo</label>
-                                            <input type="file" id="photo" name="photo" formControlName="documents" multiple
+                                            <input type="file" id="photo" name="photo" formControlName="photo" multiple
                                                 class="form-control" [ngClass]="{
                           error:
-                            getControl('documents')?.invalid &&
-                            getControl('documents')?.touched
+                            getControl('photo')?.invalid &&
+                            getControl('photo')?.touched
                         }" />
                                             <div *ngIf="
-                          getControl('documents')?.errors &&
-                          getControl('documents')?.touched
+                          getControl('photo')?.errors &&
+                          getControl('photo')?.touched
                         ">
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('documents')?.errors?.['required']">Photo is
+                                                    *ngIf="getControl('photo')?.errors?.['required']">Photo is
                                                     required</small>
                                                 <small class="text-danger"
-                                                    *ngIf="getControl('documents')?.errors?.['invalidFileType']">Invalid
+                                                    *ngIf="getControl('photo')?.errors?.['invalidFileType']">Invalid
                                                     file type. Allowed types: JPEG,JPG, PNG</small>
                                             </div>
                                         </div>

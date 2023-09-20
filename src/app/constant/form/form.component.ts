@@ -33,7 +33,7 @@ validateImageType(control: AbstractControl): ValidationErrors | null {
 
 constructor(private formservices:FormService,private  formBuilder:FormBuilder,private router:Router){}
 registerForm= new FormGroup({
-  saloonName:new FormControl( '', [
+  name:new FormControl( '', [
     Validators.required,
     Validators.pattern(/^[A-Za-z_ ]+$/), 
   ]),
@@ -45,7 +45,7 @@ registerForm= new FormGroup({
     Validators.required,
     Validators.pattern( /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
   ]),
-  phone:new FormControl('',[
+  Phone:new FormControl('',[
     Validators.required,
     Validators.pattern(/^[6789][0-9]{9}$/),
   ]),
@@ -57,23 +57,23 @@ registerForm= new FormGroup({
 Validators.required,
 
   ]),
-  address:new FormControl('',[
+  Address:new FormControl('',[
  Validators.required,
   ]),
-  pincode:new FormControl('',[
+  Pincode:new FormControl('',[
   Validators.required,
   Validators.maxLength(6),
    Validators.pattern(/^[0-9]{6}$/),
   ]),
-  registrationNumber:new FormControl('',[
+  RegistrationNo:new FormControl('',[
   Validators.required,
   
   ]),
-  GSTNNumber: new FormControl('', [
+  gstn: new FormControl('', [
     Validators.required,
     
   ]),
-   documents: new FormControl('', [
+   photo: new FormControl('', [
      Validators.required,
      this.validateImageType,
    ]),

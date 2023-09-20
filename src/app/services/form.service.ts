@@ -8,8 +8,6 @@ export class FormService {
   constructor(private http:HttpClient) { }
 
   formdata(data:any){
-    return this.http.post('http://localhost:3000/saloon/register',data)
+    return this.http.post('http://3.110.193.224:3000/saloon/register',data)
   }
 }
-
-//3.110.193.224:3000
