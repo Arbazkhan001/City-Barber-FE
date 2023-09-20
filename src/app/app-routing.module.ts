@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent} from "./dashboard/dashboard.component"
 import{saloonDashboardComponent} from "./saloon/dashboard/dashboardsaloon.component"
 
-const routes: Routes = [{ path: 'users/dashboard', component: DashboardComponent },  { path: 'dashboard/dashboardsaloon', component: saloonDashboardComponent},
+const routes: Routes = [{ path: 'users/dashboard', component: DashboardComponent },
 { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }];
 
 @NgModule({

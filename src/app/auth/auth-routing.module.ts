@@ -10,9 +10,10 @@ import { HomeComponent } from '../home/home.component';
 import { FormComponent } from '../constant/form/form.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { saloonDashboardComponent } from '../saloon/dashboard/dashboardsaloon.component';
 
 
-const routes: Routes = [{ path: '', component: HomeComponent }, { path: 'auth/login', component: LoginComponent }, { path: 'auth/register', component: RegisterComponent },{path:'dashboard',component:DashboardComponent},{path:'header',component:HeaderComponent},{path:'footer',component:FooterComponent},{path:'home',component:HomeComponent},{path:'saloon/register',component:FormComponent},{path:'forgot-password',component:ForgotpasswordComponent}];
+const routes: Routes = [{ path: '', component: HomeComponent }, { path: 'auth/login', component: LoginComponent }, { path: 'auth/register', component: RegisterComponent },{path:'dashboard',component:DashboardComponent},{ path: 'dashboard/dashboardsaloon', component: saloonDashboardComponent},{path:'header',component:HeaderComponent},{path:'footer',component:FooterComponent},{path:'home',component:HomeComponent},{path:'saloon/register',component:FormComponent},{path:'forgot-password',component:ForgotpasswordComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
