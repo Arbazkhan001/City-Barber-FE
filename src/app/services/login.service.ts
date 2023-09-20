@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import{HttpClient}from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http:HttpClient){ }
-  login(data:any){
-  return this.http.post('http://3.110.193.224:3000/auth/login',data)
+  constructor(private http: HttpClient) { }
+
+  userLogin(data: any): Observable<any> {
+    return this.http.get('http://localhost:3000/auth/login', data)
   }
 }
 
