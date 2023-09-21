@@ -9,7 +9,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   registerData(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/users/register', data);
+    return this.http.post('http://3.110.193.224:3000/users/register', data);
   }
 }
 
