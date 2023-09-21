@@ -20,7 +20,7 @@
                   <span>Login</span>
                   <h2 class="text-center">Login</h2>
                 </div>
-                <form [formGroup]="userLoginForm" (ngSubmit)="onLogin(userLoginForm.value)">
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
                   <div class="row">
                     <div class="col-md-12 mb-3">
                       <!-- <label for="exampleInputtext" class="form-label">Email</label> -->
@@ -38,16 +38,16 @@
 
                       <!-- <label for="exampleInputPassword1" class="form-label"></label> -->
                       <input type="password" class="form-control" id="exampleInputPassword1 " autocomplete="off"
-                        required="off" formControlName="Password" placeholder="Password"
-                        [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('Password')?.touched }">
-                      <div *ngIf="getControl('Password')?.errors && getControl('Password')?.touched">
-                        <small class="text-danger" *ngIf="getControl('Password')?.errors?.['pattern']"> Please Enter
+                        required="off" formControlName="password" placeholder="Password"
+                        [ngClass]="{'is-invalid': getControl('Password')?.invalid && getControl('password')?.touched }">
+                      <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+                        <small class="text-danger" *ngIf="getControl('password')?.errors?.['pattern']"> Please Enter
                           Valid
                           Password</small>
-                        <small class="text-danger" *ngIf="getControl('Password')?.errors?.['required']"> Password is
+                        <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']"> Password is
                           required</small>
                         <small class="text-danger"
-                          *ngIf="getControl('Password')?.errors?.['minlength'] || getControl('Password')?.errors?.['maxlength']">Password
+                          *ngIf="getControl('Password')?.errors?.['minlength'] || getControl('password')?.errors?.['maxlength']">Password
                           should be minimum 6 and maximum 10 </small>
                       </div>
                     </div>

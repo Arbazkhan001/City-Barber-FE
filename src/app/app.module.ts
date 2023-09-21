@@ -12,8 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './common/home/header/header.component';
 import { FooterComponent } from './common/home/footer/footer.component';
-import { FormComponent } from './constant/form/form.component';
-import { RegisterComponent } from './saloon/register/register.component';
+import { SaloonRegisterComponent } from './saloon/register/register.component';
 
 
 @NgModule({
@@ -24,10 +23,7 @@ import { RegisterComponent } from './saloon/register/register.component';
     HeaderComponent,
      FooterComponent,
     HomeComponent,
-    FormComponent,
-    RegisterComponent,
-  
-   
+    SaloonRegisterComponent,
   ],
   imports: [
     BrowserModule,
