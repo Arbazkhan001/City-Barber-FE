@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { forgotPasswordService } from 'src/app/services/forgotpassword.service';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -11,7 +12,7 @@ export class ForgotpasswordComponent implements OnInit {
   forgotPassword: FormGroup;
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private forgotpasswordservice: forgotPasswordService) {
     this.forgotPassword = this.formBuilder.group({
       email: ['', [
         Validators.required,
@@ -20,7 +21,7 @@ export class ForgotpasswordComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getControl(name: string) {
     return this.forgotPassword.get(name);
@@ -31,8 +32,11 @@ export class ForgotpasswordComponent implements OnInit {
     return control?.invalid && control?.touched;
   }
 
-  forgotPasswordSubmit() {
+  onSubmit() {
     if (this.forgotPassword.valid) {
+      this.forgotpasswordservice.forgotPassword(this.forgotPassword.value).subscribe((response) => {
+        console.log("response", response)
+      })
       console.log(this.forgotPassword.value);
       this.forgotPassword.reset();
     } else {
