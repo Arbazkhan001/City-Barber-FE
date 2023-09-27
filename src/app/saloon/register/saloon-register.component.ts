@@ -14,9 +14,11 @@ export class SaloonRegisterComponent implements OnInit {
 
   data: any = [];
   allStates: any = [];
-  allCities: any = [];
+  allCities: any[] = [];
+  filteredCities: any[] = [];
   selectedState: string = '';
   selectedCity: string = '';
+  stateId:any =[];
 
   registerForm: FormGroup = this.formBuilder.group({
     saloonName: ['', [Validators.required, Validators.pattern(/^[A-Za-z_ ]+$/)]],
@@ -31,10 +33,11 @@ export class SaloonRegisterComponent implements OnInit {
     GSTNumber: ['', [Validators.required]],
     documents: ['', [Validators.required, this.validateFileExtension]]
   });
+  
 
   ngOnInit(): void {
-    // this.allCities();
-    // this.allStates();
+    this.getAllCities();
+    this.getAllStates();
   }
 
   getControl(GSTNumber: string): AbstractControl | null {
@@ -64,100 +67,122 @@ export class SaloonRegisterComponent implements OnInit {
     return false; // Validation failed
   }
 
+  onStateChange() {
+    // Update the list of filteredCities based on the selected state
+    const selectedState = this.registerForm.get('state')?.value;
 
-  onSubmitClicked(data: any) {
+    if (selectedState) {
+      this.filteredCities = this.allCities.filter(city => city.state === selectedState);
+    } else {
+      this.filteredCities = [];
+    }
+
+    // Clear the selected city if it's not in the filtered list
+    const selectedCity = this.registerForm.get('city')?.value;
+    if (!this.filteredCities.includes(selectedCity)) {
+      this.registerForm.get('city')?.setValue('');
+    }
+  }
+
+  // onSubmit(data: any) {
+  //   console.log('Form is valid', this.registerForm.value);
+  //   if (this.registerForm.valid) {
+  //     this.SaloonregisterService.saloonRegister(data).subscribe((response) => {
+  //       console.log("response", response);
+  //       this.getAllStates();
+  //       this.getAllCities();
+        
+  //     })
+  //     // this.registerData(this.registerForm.value);
+  //   } else {
+      
+  //     console.error('Form is invalid. Please check the form fields.', this.registerForm.errors);
+  //   }
+  // }
+  onSubmit(data: any) {
     console.log('Form is valid', this.registerForm.value);
     if (this.registerForm.valid) {
+      const selectedState = this.registerForm.get('state')?.value;
+      const selectedCity = this.registerForm.get('city')?.value;
+      data.state = selectedState;
+      data.city = selectedCity;
       this.SaloonregisterService.saloonRegister(data).subscribe((response) => {
-        console.log("response", response)
-      })
-      // this.registerData(this.registerForm.value);
+        console.log("response", response);
+      });
     } else {
       console.error('Form is invalid. Please check the form fields.', this.registerForm.errors);
     }
   }
 
-  // registerData(data: any): void {
-  //   console.log('Request Data:', data); // Log the request data
-  //   this.registerService.registerData(data).subscribe(
-  //     (response) => {
-  //       console.log('Response', response); // Log the API response
-  //       // Redirect to saloon dashboard route after successful registration
-  //       this.router.navigate(['/saloon/saloonDashboard']);
-  //     },
-  //     (error) => {
-  //       console.error('Error:', error); // Log any errors
-  //     }
-  //   );
-  // }
-
-  // getAllStates(data: any) {
-  //   this.SaloonregisterService.getAllStates(data).subscribe((response: any) => {
-  //     console.info("response", response);
-  //     this.allStates = response;
-  //     console.info("this.allStates", this.allStates)
-  //   }
-  //   )
-  // };
-
-  // getAllStates() {
-  //   // this.SaloonregisterService.getAllStates().subscribe(
-  //   //   (response: any) => {
-  //   //     console.info("response", response);
-  //   //     this.allStates = response;
-  //   //     console.info("this.allStates", this.allStates);
-  //   //   },
-  //   //   (error) => {
-  //   //     console.error("Error fetching states:", error);
-  //   //   }
-  //   // );
-  //   this.SaloonregisterService.getAllStates().subscribe(
-  //     (data) => {
-  //       // Handle the data returned from the API
-  //       console.log('States:', data);
-  //     },
-  //     (error) => {
-  //       // Handle any errors
-  //       console.error('Error fetching states:', error);
-  //     }
-  //   );
-  // }
-
-  // getAllStates() {
-  //   this.SaloonregisterService.getAllStates().subscribe(
-  //     (data) => {
-  //       // Handle the data returned from the API
-  //       this.allStates = data; // Assign the fetched states to your component variable
-  //       console.log('States:', this.allStates);
-  //     },
-  //     (error) => {
-  //       // Handle any errors
-  //       console.error('Error fetching states:', error);
-  //     }
-  //   );
-  // }
-
-
-
-  getAllCities() {
-    //  {
-    //   this.SaloonregisterService.getAllCities().subscribe((response: any) => {
-    //     this.allCities = response;
-    //     console.log("response", response)
-    //   })
-    // }
-
-    this.SaloonregisterService.getAllCities().subscribe(
-      (data) => {
-        // Handle the data returned from the API
-        console.log('city:', data);
+  getAllStates() {
+    this.SaloonregisterService.getAllStates(this.data).subscribe(
+      (response) => {
+        this.allStates = response.data;
+        console.info("response of state ", this.allStates);
+        console.info("response of state ", this.allStates[0]);
       },
       (error) => {
-        // Handle any errors
-        console.error('Error fetching states:', error);
+        console.error("Error fetching states:", error);
       }
     );
   }
+  
+  getAllCities() {
+    this.SaloonregisterService.getAllCities(this.data).subscribe(
+      (response) => {
+        this.allCities = response.data;
+        console.info('city:', this.allCities[0]);
+      },
+      (error) => {
+        console.error('Error fetching cities:', error);
+      }
+    );
+  }
+  
 
+
+  // getAllCities() {
+  //   this.SaloonregisterService.getAllCities(this.data).subscribe(
+  //     (response) => {
+  //       // Check the response data
+  //       console.log('API Response:', response);
+  
+  //       // Ensure that 'data' property exists in the response and assign it to 'allCities'
+  //       if (response && response.data) {
+  //         this.allCities = response.data;
+  //         console.info('City:', this.allCities);
+  //       } else {
+  //         console.error('Invalid API response:', response);
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching cities:', error);
+  //     }
+  //   );
+  // }
+  
+  // getAllCities() {
+  //   this.SaloonregisterService.getAllCities(this.data).subscribe(
+  //     (response) => {
+  //       if (response && response.data && response.data.length > 0) {
+  //         this.allCities = response.data;
+  //         console.info('City:', this.allCities.values);
+  
+  //         // Assuming you have a default city and state selected from the response
+  //         this.registerForm.patchValue({
+  //           state: response.data[0].state, // Use the appropriate index or logic to select the default state
+  //           city: response.data[0].city, // Use the appropriate index or logic to select the default city
+  //         });
+  //       } else {
+  //         console.error('Invalid API response:', response);
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching cities:', error);
+  //     }
+  //   );
+  // }
+
+  
+  
 }
-

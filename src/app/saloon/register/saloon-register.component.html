@@ -22,7 +22,7 @@
                                     <h2 class="text-center">Login</h2>
                                 </div>
 
-                                <form [formGroup]="registerForm" (ngSubmit)="onSubmitClicked(data)">
+                                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(data)">
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
                                             <!-- <label for="exampleInputtext1" class="form-label">Saloon Name</label> -->
@@ -157,17 +157,16 @@
                                             </div>
                                         </div> -->
                                         <div class="mb-3 col-md-6">
-                                            <select class="form-select" id="state" name="state">
-                                                <option value="">Select State</option>
-                                                <option *ngFor="let state of allStates" [value]="state">{{ state }}
-                                                </option>
+                                            <select class="form-select" id="state" name="state" formControlName="state" (change)="onStateChange()">
+                                              <option value="">Select State</option>
+                                              <option *ngFor="let state of allStates" [value]="state._id">{{ state.stateName }}</option>
                                             </select>
-                                        </div>
+                                          </div>
 
                                         <div class="mb-3 col-md-6">
                                             <select class="form-select" id="city" name="city">
                                                 <option value="">Select City</option>
-                                                <option *ngFor="let city of allCities" [value]="city">{{ city }}
+                                                <option *ngFor="let city of allCities" [value]="city.cityName">{{ city.cityName }}
                                                 </option>
                                             </select>
                                         </div>

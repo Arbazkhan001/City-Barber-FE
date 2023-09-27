@@ -18,19 +18,16 @@ export class saloonRegisterService {
   // }
 
   saloonRegister(data: any): Observable<any> {
-    return this.http.post('http://3.110.193.224:3000/saloon/register', data);
+    return this.http.post('http://localhost:3000/saloon/register', data);
   }
-  getAllStates(data: any) {
-    return this.http.get('http://3.110.193.224:3000/state/getAll', data);
+  getAllStates(data: any): Observable<any> {
+    return this.http.get('http://localhost:3000/state/getAll', data);
   }
 
-  // getAllCities(data: any) {
-  //   return this.http.get('http://3.110.193.224:3000/city/getAll', data);
-  // }
-  getAllCities() {
-    const apiUrl = 'http://3.110.193.224:3000/city/getAll';
-    return this.http.get(apiUrl);
+  getAllCities(data: any):Observable<any> {
+    return this.http.get('http://localhost:3000/city/getAll', data);
   }
+ 
   //  getAllStates(url: string): Observable<any> {
   //   return this.http.get(`${API_URL}/${url}`).pipe(map((res) => res));
   // }
