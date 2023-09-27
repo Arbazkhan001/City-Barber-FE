@@ -15,12 +15,3 @@ export class RegisterService {
 
 // 3.110.193.224
 
-// export class RegisterService {
-//   private apiUrl = 'your_registration_api_url';
-
-//   constructor(private http: HttpClient) { }
-
-//   registerData(data: any): Observable<any> {
-//     return this.http.post('http://3.110.193.224:3000/users/register', data);
-//   }
-// }

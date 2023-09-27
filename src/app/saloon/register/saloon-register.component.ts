@@ -31,7 +31,7 @@ export class SaloonRegisterComponent implements OnInit {
     pincode: ['', [Validators.required, Validators.maxLength(6), Validators.pattern(/^[0-9]{6}$/)]],
     registrationNumber: ['', [Validators.required]],
     GSTNumber: ['', [Validators.required]],
-    documents: ['', [Validators.required, this.validateFileExtension]]
+    documents: ['']
   });
   
 
@@ -183,6 +183,4 @@ export class SaloonRegisterComponent implements OnInit {
   //   );
   // }
 
-  
-  
 }

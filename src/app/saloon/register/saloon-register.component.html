@@ -159,12 +159,12 @@
                                         <div class="mb-3 col-md-6">
                                             <select class="form-select" id="state" name="state" formControlName="state" (change)="onStateChange()">
                                               <option value="">Select State</option>
-                                              <option *ngFor="let state of allStates" [value]="state._id">{{ state.stateName }}</option>
+                                              <option *ngFor="let state of allStates" [value]="state.stateName">{{ state.stateName }}</option>
                                             </select>
                                           </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <select class="form-select" id="city" name="city">
+                                            <select class="form-select" id="city" name="city" formControlName="city">
                                                 <option value="">Select City</option>
                                                 <option *ngFor="let city of allCities" [value]="city.cityName">{{ city.cityName }}
                                                 </option>

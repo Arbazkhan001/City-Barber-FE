@@ -9,7 +9,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(data: any): Observable<any> {
-    return this.http.post('http://3.110.193.224:3000/auth/login', data)
+    return this.http.post('http://localhost:3000/auth/login', data)
   }
 }
 

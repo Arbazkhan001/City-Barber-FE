@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
       const confirmPassword = this.userRegister.get('confirmpassword')?.value;
       if (password === confirmPassword) {
         console.log('Form is valid', this.userRegister.value);
-        this.registerData(this.userRegister.value);
         this.userRegister.reset();
         this.router.navigate(['/auth/login']);
       }
@@ -73,16 +72,16 @@ export class RegisterComponent implements OnInit {
   //   }
   // }
 
-  registerData(data: any): void {
-    this.registerService.registerData(data).subscribe(
-      (response) => {
-        console.log('Response', response);
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
-  }
+  // registerData(data: any): void {
+  //   this.registerService.registerData(data).subscribe(
+  //     (response) => {
+  //       console.log('Response', response);
+  //     },
+  //     (error) => {
+  //       console.error('Error:', error);
+  //     }
+  //   );
+  // }
   markFormControlsAsTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((key) => {
       const control = formGroup.controls[key];

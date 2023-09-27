@@ -32,48 +32,24 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(name);
   }
 
-  onLogin(data: object) {
-    // console.log('Form validity:', this.loginForm.valid);
-    // console.log('Control validity:', this.loginForm.get('password')?.valid);
-    // console.log('Email control validity:', this.loginForm.get('email')?.valid);
-
-    if (this.loginForm.valid) {
-      const credentials = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password,
-      };
-
-      console.log('Credentials:', credentials);
-
-      this.loginservices.login('credentials').subscribe(
-        (response: any) => {
+  onLogin(data: any) {
+      this.loginservices.login(data).subscribe(
+        (response) => {
           console.log('Authentication result:', response);
 
-          if (this.loginForm.valid) {
-            console.log('User is authenticated. Navigating to dashboard...');
-            this.router.navigate(['/dashboard']);
-          } else {
-            console.error('User not found or invalid credentials');
-          }
-        },
-        (error) => {
-          console.error('Error during authentication:', error);
         }
+       
       );
-    } else {
-      this.markFormControlsAsTouched(this.loginForm);
-      console.log('Form is invalid. Please check the form fields.');
     }
   }
 
-  markFormControlsAsTouched(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((key) => {
-      const control = formGroup.controls[key];
-      if (control instanceof FormGroup) {
-        this.markFormControlsAsTouched(control);
-      } else {
-        control.markAsTouched();
-      }
-    });
-  }
-}
+  // markFormControlsAsTouched(formGroup: FormGroup) {
+  //   Object.keys(formGroup.controls).forEach((key) => {
+  //     const control = formGroup.controls[key];
+  //     if (control instanceof FormGroup) {
+  //       this.markFormControlsAsTouched(control);
+  //     } else {
+  //       control.markAsTouched();
+  //     }
+  //   });
+  // }
