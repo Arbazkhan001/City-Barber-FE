@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   visible: boolean = true;
   changetype: boolean = true;
   getUser: any = [];
-  data: any
+  data: any;
 
   constructor(
     private fb: FormBuilder,
@@ -38,50 +38,35 @@ export class RegisterComponent implements OnInit {
     return this.userRegister.get(username);
   }
 
-  onSubmitClicked() {
+  onSubmit() {
     if (this.userRegister.valid) {
-      this.registerService.registerData(this.data).subscribe((response) => {
-        console.info("response", response)
-      })
-      const password = this.userRegister.get('password')?.value;
-      const confirmPassword = this.userRegister.get('confirmpassword')?.value;
-      if (password === confirmPassword) {
-        console.log('Form is valid', this.userRegister.value);
-        this.userRegister.reset();
-        this.router.navigate(['/auth/login']);
-      }
-
-      else {
-        this.userRegister.get('confrimPassword')?.setErrors({ passwordMismatch: true });
-        console.error('Passwords do not match. Please check your password and confirm password fields.');
-      }
-    }
-    else {
+      // Create an object with the form values
+      const formData = {
+        username: this.userRegister.get('username')?.value,
+        email: this.userRegister.get('email')?.value,
+        phone: this.userRegister.get('phone')?.value,
+        password: this.userRegister.get('password')?.value,
+      };
+  
+      // Make the API request with the form data
+      this.registerService.userRegister(formData).subscribe((response) => {
+        console.info('response', response);
+        const password = this.userRegister.get('password')?.value;
+        const confirmPassword = this.userRegister.get('confirmpassword')?.value;
+        if (password === confirmPassword) {
+          console.log('Form is valid', this.userRegister.value);
+          this.userRegister.reset();
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.userRegister.get('confirmpassword')?.setErrors({ passwordMismatch: true });
+          console.error('Passwords do not match. Please check your password and confirm password fields.');
+        }
+      });
+    } else {
       console.error('Form is invalid. Please check the form fields.');
     }
   }
-
-  // onSubmit() {
-  //   if (this.userRegister.valid) {
-  //     this.registerService
-  //       .registerData('users')
-  //       .subscribe((response) => {
-  //         console.info("response", response)
-  //         this.getUser = response.result;
-  //       });
-  //   }
-  // }
-
-  // registerData(data: any): void {
-  //   this.registerService.registerData(data).subscribe(
-  //     (response) => {
-  //       console.log('Response', response);
-  //     },
-  //     (error) => {
-  //       console.error('Error:', error);
-  //     }
-  //   );
-  // }
+  
   markFormControlsAsTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((key) => {
       const control = formGroup.controls[key];

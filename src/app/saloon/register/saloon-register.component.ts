@@ -31,7 +31,7 @@ export class SaloonRegisterComponent implements OnInit {
     pincode: ['', [Validators.required, Validators.maxLength(6), Validators.pattern(/^[0-9]{6}$/)]],
     registrationNumber: ['', [Validators.required]],
     GSTNumber: ['', [Validators.required]],
-    documents: ['']
+    documents: ['', [Validators.required]]
   });
   
 
@@ -100,14 +100,14 @@ export class SaloonRegisterComponent implements OnInit {
   //   }
   // }
   onSubmit(data: any) {
-    console.log('Form is valid', this.registerForm.value);
+    // console.log('Form is valid', this.registerForm.value);
     if (this.registerForm.valid) {
-      const selectedState = this.registerForm.get('state')?.value;
-      const selectedCity = this.registerForm.get('city')?.value;
-      data.state = selectedState;
-      data.city = selectedCity;
+      // const selectedState = this.registerForm.get('state')?.value;
+      // const selectedCity = this.registerForm.get('city')?.value;
+      // data.state = selectedState;
+      // data.city = selectedCity;
       this.SaloonregisterService.saloonRegister(data).subscribe((response) => {
-        console.log("response", response);
+        console.info("response", response);
       });
     } else {
       console.error('Form is invalid. Please check the form fields.', this.registerForm.errors);

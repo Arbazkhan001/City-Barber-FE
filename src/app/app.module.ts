@@ -13,17 +13,20 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './common/home/header/header.component';
 import { FooterComponent } from './common/home/footer/footer.component';
 import { SaloonRegisterComponent } from './saloon/register/saloon-register.component';
+import { StaffFormComponent } from './saloon/staffs/staff.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    StaffFormComponent,
     DashboardComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
     SaloonRegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
