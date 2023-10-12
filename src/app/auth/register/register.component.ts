@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[A-Za-z\s]*$/)]],
     email: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailRegex)]],
     phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.phoneRegex)]],
-    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), Validators.pattern(this.passwordRegex)]],
+    password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(16), Validators.pattern(this.passwordRegex)]],
     confirmpassword: ['', [Validators.required]],
   });
 
@@ -39,13 +39,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    
     if (this.userRegister.valid) {
-      // Create an object with the form values
       const formData = {
         username: this.userRegister.get('username')?.value,
         email: this.userRegister.get('email')?.value,
-        phone: this.userRegister.get('phone')?.value,
+        phone: this.userRegister.get('phone')?.value, 
         password: this.userRegister.get('password')?.value,
+       confirmpassword: this.userRegister.get('confirmpassword')?.value,
       };
   
       // Make the API request with the form data

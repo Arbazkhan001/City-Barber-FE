@@ -1,9 +1,5 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="saloonID">Saloon ID</label>
-        <input type="number" class="form-control" id="saloonID" [(ngModel)]="saloonID" name="saloonID">
-      </div>
+    <form (ngSubmit)="onSubmit('')">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">

@@ -14,10 +14,12 @@ import { HeaderComponent } from './common/home/header/header.component';
 import { FooterComponent } from './common/home/footer/footer.component';
 import { SaloonRegisterComponent } from './saloon/register/saloon-register.component';
 import { StaffFormComponent } from './saloon/staffs/staff.component';
+import { ServicesFormComponent } from './saloon/saloonService/service.component';
 
 
 @NgModule({
   declarations: [
+    ServicesFormComponent,
     AppComponent,
     StaffFormComponent,
     DashboardComponent,

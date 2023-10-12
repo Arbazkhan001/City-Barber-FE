@@ -23,10 +23,6 @@ export class SaloonDashboardComponent implements OnInit {
   }
 
   addStaff(data: any) {
-    // Your code here
-    this.saloonDashboardService.addStaff(data).subscribe((response: any) => {
-      console.info("response:", response);
-      this.router.navigate(['/saloon/staff']);
-    });
+    this.router.navigate(['/saloon/staff']);
   }
 }

@@ -1,0 +1,18 @@
+<div class="container">
+    <form (ngSubmit)="addServices(data)">
+      <div class="name">
+        <label for="name">Service Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="data.name" name="name">
+      </div>
+      <div class="duration">
+        <label for="duration">Duration</label>
+        <input type="text" class="form-control" id="duration" [(ngModel)]="data.duration" name="duration">
+      </div>
+      <div class="expertise">
+        <label for="expertise">Price</label>
+        <input type="text" class="form-control" id="price" [(ngModel)]="data.price" name="price">
+      </div>
+     
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
